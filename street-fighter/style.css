@@ -1,6 +1,7 @@
 #landing-bg {
     /* background-image: ; */
-    background: url("https://i.imgur.com/xeLWMlb.gif");
+    /* background: url("https://i.imgur.com/xeLWMlb.gif"); */
+    background: url("assets/background2.gif");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -17,9 +18,16 @@ img {
     margin-bottom: -30px;
   }
 
-.container-progressbars {
-margin: 0 auto;
+  #player-name {
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    color: yellow;
   }
+
+/* .progress-bar {
+padding:0;
+} */
 
 .container { 
     display: flex;
@@ -27,41 +35,59 @@ margin: 0 auto;
     align-items: flex-end;
     align-content: center;
     position: fixed;
-    bottom: 0;
+    bottom: 5%;
     right: 0;
+    left: 0;
 
   }
-
 
   .container .item-0 {
     bottom: 0;
     right: 0;
-    background-color: red;
-    border: solid 1px black;
+    content: url(assets/p1.jpg);
+    height: 220px;
+    animation-name: jiggle;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
   }
 
+  @keyframes jiggle {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(30px, 5px) }
+    100% { transform: translate(0, 0px) }
+}
   .container .item-1 {
     bottom: 0;
     right: 0;
-    background-color: Pink;
-    border: solid 1px black;
+    content: url(assets/p2.jpg);
+    transform: scaleX(-1);
+    height: 220px;
+    animation-name: sumo;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
   }
 
- 
+  @keyframes sumo {
+    0% { transform: scaleX(-1);}
+    50% { transform: translateY(30px) scaleX(-1);}
+    100% { transform: (0, 20px) }
+}
+
+
   .container-arrow {
         display: flex;
         justify-content: center;
         max-width: 200px;
         max-height: 60px;
-        background-color: dimgrey;
-        margin: 80px auto;
+        margin: 20px auto;
         position: relative; 
       }
       
 
 
-  .arrowkey {
+  .arrowkey img {
     text-align: center;
-    width: 580px;
+    width: 80px;
+    height: 80px;
 
 }
