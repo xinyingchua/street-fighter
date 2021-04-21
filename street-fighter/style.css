@@ -1,3 +1,23 @@
+/* Initial Landing & Instruction Page */
+
+#instruction-page {
+  background: url("assets/instruction-page.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+}
+
+#start-button{ 
+  content: url(assets/start\ button.png);
+  width: 15%;
+  position: absolute;
+  top: 80%;
+  right: 25%
+}
+
+/* Game Page CSS */
+
 #landing-bg {
     /* background-image: ; */
     /* background: url("https://i.imgur.com/xeLWMlb.gif"); */
@@ -6,12 +26,12 @@
     background-size: cover;
     height: 100vh;
     background-position: center;
+    display: none; 
 }
 
 #logo {
-    max-width: 200px;
+    width: 18%;
     position: relative;
-    height:150px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -19,13 +39,13 @@
   }
 
   #versus {
-    width: 30px;
+    width: 50px;
     position: relative;
     display: block;
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: -30px;
+    margin-bottom: -70px;
+    z-index: 1;
   }
 
 
@@ -41,11 +61,13 @@
   .player-name2 {
     width: 50%;
     text-align: right;
+    margin-right: 2%;
   }
 
   .player-name1 {
     width: 50%;
     text-align: left;
+    margin-left: 2%;
   }
 
 
@@ -64,8 +86,8 @@
   .container .item-0 {
     bottom: 0;
     right: 0;
-    content: url(assets/p1.jpg);
-    height: 220px;
+    content: url(assets/p1.png);
+    width: 10%;
     animation-name: jiggle;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
@@ -79,9 +101,9 @@
   .container .item-1 {
     bottom: 0;
     right: 0;
-    content: url(assets/p2.jpg);
+    content: url(assets/p2.png);
     transform: scaleX(-1);
-    height: 220px;
+    width: 13%;
     animation-name: sumo;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
@@ -97,8 +119,6 @@
   .container-arrow {
         display: flex;
         justify-content: center;
-        max-width: 200px;
-        max-height: 60px;
         margin: 20px auto;
         position: relative; 
       }
@@ -106,8 +126,21 @@
 
 
   .arrowkey img {
-    text-align: center;
-    width: 80px;
-    height: 80px;
-
+    width: 80%; 
 }
+
+.progress-wrapper {
+display: flex;
+justify-content: center;
+flex: wrap;
+width: 96%;
+margin: 0 auto;
+}
+
+
+/* .row .player-1 {
+  width: 40%;
+}
+.row .player-2 {
+  width: 49%;
+} */

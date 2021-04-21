@@ -13,7 +13,12 @@
     <title>Street Fighter</title>
   </head>
   <body>
+        <!-- Initial Landing Page with Instructions -->
+        <div id="instruction-page">
+          <div id="start-button"></div>
+        </div>
 
+        <!-- Game Page -->
         <div id="landing-bg">
             <img id="logo" src="assets/game-logo.webp">
             <img id="versus" src="assets/vs.png">
@@ -23,11 +28,9 @@
               <p class="player-name2">Player 2</p>
             </div>
 
-
-
-            <div class="container-progressbars">
-              <div class="row">
-            <div class="progress col-6 player-1 justify-content-end bg-danger">
+            <!-- Health Bar -->
+            <div class="progress-wrapper">
+              <div class="progress col-6 player-1 justify-content-end bg-danger">
               <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
@@ -35,20 +38,19 @@
               <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
-          </div>
-
+          <!-- Arrow Key Section -->
           <div class="container-arrow">
-                <div class="arrowkey"><img src="assets/down-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/uparrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/left-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/right-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/down-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/left-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/left-arrow.jpg"></div>
-                <div class="arrowkey"><img src="assets/right-arrow.jpg"></div>
+                <div class="arrowkey"><img src="assets/down.png"></div>
+                <div class="arrowkey"><img src="assets/down.png"></div>
+                <div class="arrowkey"><img src="assets/left.png"></div>
+                <div class="arrowkey"><img src="assets/right.png"></div>
+                <div class="arrowkey"><img src="assets/down.png"></div>
+                <div class="arrowkey"><img src="assets/up.png"></div>
+                <div class="arrowkey"><img src="assets/left.png"></div>
+                <div class="arrowkey"><img src="assets/right.png"></div>
               
           </div>
-
+            <!-- Player Characters -->
             <div class="container">
                 <div class="item-0">
                    <p>player 1</p>
