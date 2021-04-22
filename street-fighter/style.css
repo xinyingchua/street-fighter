@@ -16,6 +16,10 @@
   right: 25%
 }
 
+#start-button:hover {
+  cursor: pointer;
+}
+
 /* Game Page CSS */
 
 #landing-bg {
@@ -129,6 +133,22 @@
     width: 80%; 
 }
 
+.up {
+content: url("assets/up.png")
+}
+
+.down {
+  content: url("assets/down.png")
+  }
+
+.left {
+content: url("assets/left.png")
+}
+
+.right {
+  content: url("assets/right.png")
+  }
+
 .progress-wrapper {
 display: flex;
 justify-content: center;
@@ -137,10 +157,3 @@ width: 96%;
 margin: 0 auto;
 }
 
-
-/* .row .player-1 {
-  width: 40%;
-}
-.row .player-2 {
-  width: 49%;
-} */
