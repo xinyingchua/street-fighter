@@ -91,7 +91,7 @@
     bottom: 0;
     right: 0;
     content: url(assets/p1.png);
-    width: 10%;
+    min-width: 130px;
     animation-name: jiggle;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
@@ -107,7 +107,7 @@
     right: 0;
     content: url(assets/p2.png);
     transform: scaleX(-1);
-    width: 13%;
+    min-width: 168px;
     animation-name: sumo;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
