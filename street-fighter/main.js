@@ -7,9 +7,9 @@ window.onload = function () {
   let gamePage = document.querySelector("#landing-bg");
   let arrowDiv = document.querySelectorAll(".arrowkey img");
   let p1HealthBar = document.querySelector(".player-1 .progress-bar")
-//   p1HealthBar.style.width = this.health
   let p2HealthBar = document.querySelector(".player-2 .progress-bar")
-
+  let p1Move = document.querySelectorAll(".player-1move");
+  let p2Move = document.querySelectorAll(".player-2move");
 
 // CREATING CLASS FOR BOTH PLAYERS
 
@@ -25,10 +25,9 @@ class Player {
 inflictDamage(opponent) {
     if (opponent.health !== 0) {
         opponent.health -= 20
-        console.log(opponent.health)
     }
-    else if (opponent.health ===0) {
-        alert("K.O.")
+    else if (opponent.health === 0) {
+        opponent.health = 0
     }
 }
 }
@@ -75,7 +74,6 @@ const player2KeyRef = {
    // Adding Event Listener to keys input by both players
    window.addEventListener('keydown', keyInput);
    
- 
   
    // Create Arrows in game
   createArrow();
@@ -111,7 +109,8 @@ const player2KeyRef = {
                         
                     }
                     else if(player1GameClicks < 8) {
-                        arrowDiv[i].style.border = "5px solid white"
+                        // arrowDiv[i].style.border = "5px solid white"
+                        p1Move[i].style.color ="yellow"
         
                     }   
             }
@@ -143,18 +142,21 @@ const player2KeyRef = {
             nextRound();
             player2.inflictDamage(player1)
             p1HealthBar.style.width = `${player1.health}%`
+            
             // console.log(player1.health)
             // alert(`player2 won`)
                 
             }
             else if(player2GameClicks < 8) {
-                arrowDiv[j].style.border = "5px solid yellow"
+                // arrowDiv[j].style.border = "5px solid yellow"
+                p2Move[j].style.color ="yellow"
 
             }   
         }
 
 
 }
+checkWin(player1, player2);
 }
 
 
@@ -172,6 +174,14 @@ function randomArrowArr(arr) {
         [arrowArr[i],arrowArr[j]]=[arrowArr[j],arrowArr[i]]; // swap
     }
 }
+
+// -- TO BE EXPERIMENTED TO STREAMLINE --//
+
+// function randomIndex(arr) {
+//         let randomI = Math.floor( Math.random() * arr.length )
+//         return randomI
+//     }
+// }
 
 // RANDOMDIZING ARROW ARRAY INTO ARROW CONTAINER
 // Generate New Random Arrows from Original Arrow Arrays
@@ -197,6 +207,28 @@ function createArrow() {
     }
 }
 
+// -- TO BE EXPERIMENTED TO STREAMLINE --//
+
+// function createArrow() {
+// randomIndex(arrowArr)
+
+//     for (let i = 0; i < 8; i++) {
+//             if(arrowArr[randomI] === 'up') {
+//                 arrowDiv[i].setAttribute('class','up')
+//             }
+//             else if(arrowArr[randomI]=== 'down') {
+//                 arrowDiv[i].setAttribute('class','down')
+//             }
+//             else if(arrowArr[randomI]=== 'left') {
+//                 arrowDiv[i].setAttribute('class','left')
+//             }
+//             else if(arrowArr[randomI]=== 'right') {
+//                 arrowDiv[i].setAttribute('class','right')
+//         }
+//     }
+// }
+
+
 // Reset player's arrows input & gameclicks & calling new random arrows functions
 function nextRound() {
     player1Inputs = [];
@@ -207,6 +239,8 @@ function nextRound() {
     createArrow()
     for (let i =0; i<arrowDiv.length; i++) {
     arrowDiv[i].style.border ="none"
+    p1Move[i].style.color ="transparent"
+    p2Move[i].style.color ="transparent"
     }
 
 }
@@ -217,6 +251,7 @@ function resetPlayer1() {
     player1GameClicks = 0
     for (let i =0; i<arrowDiv.length; i++) {
         arrowDiv[i].style.border ="none"
+        p1Move[i].style.color ="transparent"
     }
 }
 
@@ -225,10 +260,19 @@ function resetPlayer2() {
     player2GameClicks = 0
     for (let i =0; i<arrowDiv.length; i++) {
     arrowDiv[i].style.border ="none"
+    p2Move[i].style.color ="transparent"    
     }
 }
 
-
+// Check Winning Condition (if health bar = Zero)
+function checkWin(player1,player2) {
+    if (player1.health === 0){
+        alert("Player 2 wins!")
+    }
+    else if (player2.health === 0){
+        alert("Player 1 wins!")
+}
+}
 
 
 

@@ -131,7 +131,24 @@
 
   .arrowkey img {
     width: 80%; 
-    /* border: 10px solid yellow; */
+    border: 5px solid transparent;
+}
+
+.arrowkey {
+  text-align: center;
+  border: 5px solid transparent;
+  color:yellow
+}
+
+.player-1move {
+  margin-bottom: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: transparent
+}
+
+.player-2move {
+  font-family: 'Press Start 2P', cursive;
+  color: transparent
 }
 
 .up {
