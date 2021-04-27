@@ -4,8 +4,13 @@ window.onload = function () {
   // GLOBAL SCOPE
   let startButton = document.querySelector("#start-button");
   let instructionPage = document.querySelector("#instruction-page");
+  let timeStart = document.querySelector('#countdown')
   let gamePage = document.querySelector("#landing-bg");
+  let gameAssets = document.querySelector("#game-assets-container");
+  let endGame = document.querySelector("#ko")
   let arrowDiv = document.querySelectorAll(".arrowkey img");
+  let player1Char = document.querySelector(".container .item-0")
+  let player2Char = document.querySelector(".container .item-1")
   let p1HealthBar = document.querySelector(".player-1 .progress-bar")
   let p2HealthBar = document.querySelector(".player-2 .progress-bar")
   let p1Move = document.querySelectorAll(".player-1move");
@@ -68,8 +73,10 @@ const player2KeyRef = {
   startButton.onclick = (event) => {
     event.preventDefault();
     instructionPage.style.display = "none";
-    gamePage.style.display = "block";
+    // setTimeout();
+    // gamePage.style.display = "block";
   };
+
 
    // Adding Event Listener to keys input by both players
    window.addEventListener('keydown', keyInput);
@@ -89,8 +96,6 @@ const player2KeyRef = {
            console.log('gameclicks is', player1GameClicks)
        }
 
-
-    // checkWinConditions(player1Inputs);
 
             for(let i = 0; i<player1Inputs.length; i++) {
                 if(player1Inputs[i] !== arrowArr[i]) {
@@ -165,6 +170,19 @@ checkWin(player1, player2);
 
 // ..FUNCTIONS FUNCTIONS FUNCTIONS..
 
+// SETTING 3SEC TIMER BEFORE GAME START
+let sec = 3
+let time = setInterval(myTimer, 1000)
+
+function myTimer() {
+    timeStart.innerHTML = `Get ready in ${sec}`;
+    sec--;
+    if (sec ===-1) {
+        clearInterval(time)
+        gamePage.style.display = "block";
+        timeStart.innerHTML = ""
+    }
+}
 // SETTING & CREATING RANDOW ARROW COMBINATIONS
     // Initially used simple loop but decided to experiment with Fisher-Yates Algorithm instead 
   // Refer to Appendix 1 for experimental codes
@@ -175,13 +193,6 @@ function randomArrowArr(arr) {
     }
 }
 
-// -- TO BE EXPERIMENTED TO STREAMLINE --//
-
-// function randomIndex(arr) {
-//         let randomI = Math.floor( Math.random() * arr.length )
-//         return randomI
-//     }
-// }
 
 // RANDOMDIZING ARROW ARRAY INTO ARROW CONTAINER
 // Generate New Random Arrows from Original Arrow Arrays
@@ -207,26 +218,7 @@ function createArrow() {
     }
 }
 
-// -- TO BE EXPERIMENTED TO STREAMLINE --//
 
-// function createArrow() {
-// randomIndex(arrowArr)
-
-//     for (let i = 0; i < 8; i++) {
-//             if(arrowArr[randomI] === 'up') {
-//                 arrowDiv[i].setAttribute('class','up')
-//             }
-//             else if(arrowArr[randomI]=== 'down') {
-//                 arrowDiv[i].setAttribute('class','down')
-//             }
-//             else if(arrowArr[randomI]=== 'left') {
-//                 arrowDiv[i].setAttribute('class','left')
-//             }
-//             else if(arrowArr[randomI]=== 'right') {
-//                 arrowDiv[i].setAttribute('class','right')
-//         }
-//     }
-// }
 
 
 // Reset player's arrows input & gameclicks & calling new random arrows functions
@@ -267,13 +259,25 @@ function resetPlayer2() {
 // Check Winning Condition (if health bar = Zero)
 function checkWin(player1,player2) {
     if (player1.health === 0){
-        alert("Player 2 wins!")
+        endOfGame(player1Char, player2Char)
+        // alert("Player 2 wins!")
     }
     else if (player2.health === 0){
-        alert("Player 1 wins!")
+        endOfGame(player2Char, player1Char)
+        // alert("Player 1 wins!")
 }
 }
 
+
+function endOfGame(character1, character2) {
+    window.removeEventListener('keydown', keyInput);
+    setTimeout(() => {
+        endGame.style.display ="block"
+    }, 800);
+    character1.style.animation = "none"
+    character1.style.transform = "rotate(90deg)"
+    // character2.style.animation = "shake 0.5s"
+}
 
 
 // CODES NOT WORKING
@@ -324,3 +328,33 @@ function checkWin(player1,player2) {
 //       console.log(randomArrowArr)
 //   }
 }
+
+
+// -- TO BE EXPERIMENTED TO STREAMLINE --//
+
+// function randomIndex(arr) {
+//         let randomI = Math.floor( Math.random() * arr.length )
+//         return randomI
+//     }
+// }
+
+// -- TO BE EXPERIMENTED TO STREAMLINE --//
+
+// function createArrow() {
+// randomIndex(arrowArr)
+
+//     for (let i = 0; i < 8; i++) {
+//             if(arrowArr[randomI] === 'up') {
+//                 arrowDiv[i].setAttribute('class','up')
+//             }
+//             else if(arrowArr[randomI]=== 'down') {
+//                 arrowDiv[i].setAttribute('class','down')
+//             }
+//             else if(arrowArr[randomI]=== 'left') {
+//                 arrowDiv[i].setAttribute('class','left')
+//             }
+//             else if(arrowArr[randomI]=== 'right') {
+//                 arrowDiv[i].setAttribute('class','right')
+//         }
+//     }
+// }

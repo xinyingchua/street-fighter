@@ -20,6 +20,18 @@
   cursor: pointer;
 }
 
+#timer #countdown {
+  display: flex;
+  padding: 0;
+  /* margin-top: 250px; */
+  /* align-items: flex-end; */
+  justify-content: center;
+  width:100%;
+  color: red;
+  font-family: 'Press Start 2P', cursive;
+  
+}
+
 /* Game Page CSS */
 
 #landing-bg {
@@ -32,6 +44,10 @@
     background-position: center;
     display: none; 
 }
+
+/* #game-assets-container {
+  display: none;
+} */
 
 #logo {
     width: 18%;
@@ -120,6 +136,7 @@
 }
 
 
+
   .container-arrow {
         display: flex;
         justify-content: center;
@@ -173,5 +190,14 @@ justify-content: center;
 flex: wrap;
 width: 96%;
 margin: 0 auto;
+}
+
+/* Game Page CSS */
+
+#ko {
+  content: url("assets/ko.png");
+  display: none;
+  margin: 0 auto ;
+  /* transition-timing-function: linear; */
 }
 
