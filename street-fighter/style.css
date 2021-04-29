@@ -8,12 +8,12 @@
   background-position: center;
 }
 
-#start-button{ 
+#start-button {
   content: url(assets/start\ button.png);
   width: 15%;
   position: absolute;
   top: 80%;
-  right: 25%
+  right: 25%;
 }
 
 #start-button:hover {
@@ -26,170 +26,174 @@
   /* margin-top: 250px; */
   /* align-items: flex-end; */
   justify-content: center;
-  width:100%;
+  width: 100%;
   color: red;
-  font-family: 'Press Start 2P', cursive;
-  
+  font-family: "Press Start 2P", cursive;
 }
 
 /* Game Page CSS */
 
 #landing-bg {
-    /* background-image: ; */
-    /* background: url("https://i.imgur.com/xeLWMlb.gif"); */
-    background: url("assets/background2.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    background-position: center;
-    display: none; 
+  /* background-image: ; */
+  /* background: url("https://i.imgur.com/xeLWMlb.gif"); */
+  background: url("assets/background2.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  display: none;
 }
 
-/* #game-assets-container {
+#game-assets-container {
   display: none;
-} */
+}
 
 #logo {
-    width: 18%;
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: -30px;
-  }
-
-  #versus {
-    width: 50px;
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: -70px;
-    z-index: 1;
-  }
-
-
-  #player-name {
-    display: flex;
-    justify-content: center;
-    width:100%;
-    color: yellow;
-    margin: 0 auto;
-    font-family: 'Press Start 2P', cursive;
-  }
-
-  .player-name2 {
-    width: 50%;
-    text-align: right;
-    margin-right: 2%;
-  }
-
-  .player-name1 {
-    width: 50%;
-    text-align: left;
-    margin-left: 2%;
-  }
-
-
-.container { 
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    align-content: center;
-    position: fixed;
-    bottom: 5%;
-    right: 0;
-    left: 0;
-
-  }
-
-  .container .item-0 {
-    bottom: 0;
-    right: 0;
-    content: url(assets/p1.png);
-    min-width: 130px;
-    animation-name: jiggle;
-    animation-duration: 0.8s;
-    animation-iteration-count: infinite;
-  }
-
-  @keyframes jiggle {
-    0% { transform: translate(0px, 0px) }
-    50% { transform: translate(30px, 5px) }
-    100% { transform: translate(0, 0px) }
+  width: 18%;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -30px;
 }
-  .container .item-1 {
-    bottom: 0;
-    right: 0;
-    content: url(assets/p2.png);
+
+#versus {
+  width: 50px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -70px;
+  z-index: 1;
+}
+
+#player-name {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: yellow;
+  margin: 0 auto;
+  font-family: "Press Start 2P", cursive;
+}
+
+.player-name2 {
+  width: 50%;
+  text-align: right;
+  margin-right: 2%;
+}
+
+.player-name1 {
+  width: 50%;
+  text-align: left;
+  margin-left: 2%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  align-content: center;
+  position: fixed;
+  bottom: 5%;
+  right: 0;
+  left: 0;
+}
+
+.container .item-0 {
+  bottom: 0;
+  right: 0;
+  content: url(assets/p1.png);
+  min-width: 130px;
+  animation-name: jiggle;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(30px, 5px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+.container .item-1 {
+  bottom: 0;
+  right: 0;
+  content: url(assets/p2.png);
+  transform: scaleX(-1);
+  min-width: 168px;
+  animation-name: sumo;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes sumo {
+  0% {
     transform: scaleX(-1);
-    min-width: 168px;
-    animation-name: sumo;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
   }
-
-  @keyframes sumo {
-    0% { transform: scaleX(-1);}
-    50% { transform: translateY(30px) scaleX(-1);}
-    100% { transform: (0, 20px) }
+  50% {
+    transform: translateY(30px) scaleX(-1);
+  }
+  100% {
+    transform: (0, 20px);
+  }
 }
 
+.container-arrow {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  position: relative;
+}
 
-
-  .container-arrow {
-        display: flex;
-        justify-content: center;
-        margin: 20px auto;
-        position: relative; 
-      }
-      
-
-
-  .arrowkey img {
-    width: 80%; 
-    border: 5px solid transparent;
+.arrowkey img {
+  width: 80%;
+  border: 5px solid transparent;
 }
 
 .arrowkey {
   text-align: center;
   border: 5px solid transparent;
-  color:yellow
+  color: yellow;
 }
 
 .player-1move {
   margin-bottom: 0;
-  font-family: 'Press Start 2P', cursive;
-  color: transparent
+  font-family: "Press Start 2P", cursive;
+  color: transparent;
 }
 
 .player-2move {
-  font-family: 'Press Start 2P', cursive;
-  color: transparent
+  font-family: "Press Start 2P", cursive;
+  color: transparent;
 }
 
 .up {
-content: url("assets/up.png")
+  content: url("assets/up.png");
 }
 
 .down {
-  content: url("assets/down.png")
-  }
+  content: url("assets/down.png");
+}
 
 .left {
-content: url("assets/left.png")
+  content: url("assets/left.png");
 }
 
 .right {
-  content: url("assets/right.png")
-  }
+  content: url("assets/right.png");
+}
 
 .progress-wrapper {
-display: flex;
-justify-content: center;
-flex: wrap;
-width: 96%;
-margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex: wrap;
+  width: 96%;
+  margin: 0 auto;
 }
 
 /* Game Page CSS */
@@ -197,7 +201,6 @@ margin: 0 auto;
 #ko {
   content: url("assets/ko.png");
   display: none;
-  margin: 0 auto ;
+  margin: 0 auto;
   /* transition-timing-function: linear; */
 }
-
