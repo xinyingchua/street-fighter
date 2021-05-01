@@ -30,7 +30,7 @@ window.onload = function () {
 
     inflictDamage(opponent) {
       if (opponent.health !== 0) {
-        opponent.health -= 100;
+        opponent.health -= 20;
       } else if (opponent.health === 0) {
         opponent.health = 0;
       }
