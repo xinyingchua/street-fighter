@@ -8,6 +8,7 @@ window.onload = function () {
   let gamePage = document.querySelector("#landing-bg");
   let gameAssets = document.querySelector("#game-assets-container");
   let endGame = document.querySelector("#ko");
+  let replay = document.querySelector("#replay")
   let arrowDiv = document.querySelectorAll(".arrowkey img");
   let player1Char = document.querySelector(".container .item-0");
   let player2Char = document.querySelector(".container .item-1");
@@ -29,7 +30,7 @@ window.onload = function () {
 
     inflictDamage(opponent) {
       if (opponent.health !== 0) {
-        opponent.health -= 20;
+        opponent.health -= 100;
       } else if (opponent.health === 0) {
         opponent.health = 0;
       }
@@ -40,9 +41,11 @@ window.onload = function () {
   let player2 = new Player("Player 2", 100);
 
   let arrowArr = ["up", "up", "down", "down", "left", "left", "right", "right"];
-  //   let arrowArr = ['up', 'down', 'left', 'right'];
+    // let arrowArrSelection = ['up', 'down', 'left', 'right'];
+ 
+// CREATING RANDOM ARROWS
+  createArrow()
 
-  // function to create random integer within that range ==> index between 0 - 3 
 
   let roundNum = 1;
 
@@ -51,6 +54,7 @@ window.onload = function () {
   let player2Inputs = [];
   let player1GameClicks = 0;
   let player2GameClicks = 0;
+  let arrowDivArray = []
 
   const player1KeyRef = {
     KeyW: "up",
@@ -73,7 +77,7 @@ window.onload = function () {
     event.preventDefault();
     instructionPage.style.display = "none";
 
-     // SETTING 3SEC TIMER AFTER CLICING "START"
+     // SETTING 3SEC TIMER AFTER CLICKING "START"
     let sec = 3;
     let time = setInterval(myTimer, 1000);
     function myTimer() {
@@ -88,11 +92,18 @@ window.onload = function () {
     }
   };
 
+  // Create Arrows in game
+  // let arrowDivArray = createArrow()
+  // console.log(arrowDivArray)
+  // createArrow();
+  
+  // console.log(createArrow())
+  // console.log(arrowArr)
+
   // Adding Event Listener to keys input by both players
   window.addEventListener("keydown", keyInput);
 
-  // Create Arrows in game
-  createArrow();
+
 
   // Creating function to capture inputs by both players
   function keyInput(event) {
@@ -107,7 +118,9 @@ window.onload = function () {
       player1GameClicks += 1;
       console.log("gameclicks is", player1GameClicks);
     }
-
+    
+ 
+    
     for (let i = 0; i < player1Inputs.length; i++) {
       if (player1Inputs[i] !== arrowArr[i]) {
         resetPlayer1();
@@ -134,7 +147,7 @@ window.onload = function () {
       event.code == "ArrowRight"
     ) {
       player2Inputs.push(player2KeyRef[event.code]);
-      //    console.log(player2Inputs)
+         console.log(player2Inputs)
       player2GameClicks += 1;
       console.log("gameclicks is", player2GameClicks);
     }
@@ -174,8 +187,15 @@ window.onload = function () {
     for (let i = arrowArr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1)); // getting random index
       [arrowArr[i], arrowArr[j]] = [arrowArr[j], arrowArr[i]]; // swap
+      return arrowArr 
     }
   }
+
+  // function randomArrowArr(arr) {
+  //     let j = Math.floor(Math.random() * (arr.length)); // getting random index
+  //     return j
+  //   }
+  // }
 
   // RANDOMDIZING ARROW ARRAY INTO ARROW CONTAINER
   // Generate New Random Arrows from Original Arrow Arrays
@@ -197,6 +217,45 @@ window.onload = function () {
       }
     }
   }
+
+  // function to create random integer within that range ==> index between 0 - 3 
+
+  // function randomIndexArrow() {
+  //   let randomIndex = Math.floor(Math.random() * (arrowArrSelection.length)); // getting random index
+  //   return randomIndex
+  //   // console.log(randomIndex)
+  // }
+  // function createArrow() {
+  //   let arrowDivArray =  []
+
+  //   for (let i = 0; i < arrowDiv.length; i++) {
+
+      // arrowDiv[i].classList.add(randomArrow())
+      // arrowDivArray.push(randomArrow())
+      // console.log(arrowDivArray)
+      // console.log(arrowDiv[i])
+
+  //     if (arrowArrSelection[randomIndexArrow()] === "up") {
+  //       arrowDiv[i].setAttribute("class", "up");
+  //       arrowDivArray.push("up")
+  //     } else if (arrowArrSelection[randomIndexArrow()] === "down") {
+  //       arrowDiv[i].setAttribute("class", "down");
+  //       arrowDivArray.push("down")
+  //     } else if (arrowArrSelection[randomIndexArrow()] === "left") {  
+  //       arrowDiv[i].setAttribute("class", "left");
+  //       arrowDivArray.push("left")
+  //     } else if (arrowArrSelection[randomIndexArrow()] === "right") {
+  //       arrowDiv[i].setAttribute("class", "right");
+  //       arrowDivArray.push("right")
+  //     }
+  //     return arrowDivArray
+  //   }
+  //   // console.log(arrowDivArray)
+  //   // console.log(arrowDivArray)
+  //   // console.log(arrowDiv)
+
+  // }
+  // createArrow();
 
   // Reset player's arrows input & gameclicks & calling new random arrows functions
   function nextRound() {
@@ -234,6 +293,7 @@ window.onload = function () {
 
   // Check Winning Condition (if health bar = Zero)
   function checkWin(player1, player2) {
+    console.log(`this is round ${roundNum}`)
     if (player1.health === 0) {
       endOfGame(player1Char, player2Char);
       // alert("Player 2 wins!")
@@ -245,11 +305,20 @@ window.onload = function () {
 
   function endOfGame(character1, character2) {
     window.removeEventListener("keydown", keyInput);
+    // window.removeEventListener("keydown", keyInput);
     setTimeout(() => {
       endGame.style.display = "block";
+      replay.style.display = "block";
     }, 800);
     character1.style.animation = "none";
     character1.style.transform = "rotate(90deg)";
+    window.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+      document.location.href = ""
+      }
+    })
+
+
     // character2.style.animation = "shake 0.5s"
   }
 
