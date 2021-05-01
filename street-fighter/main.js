@@ -9,7 +9,6 @@ window.onload = function () {
   let gameAssets = document.querySelector("#game-assets-container");
   let endGame = document.querySelector("#ko");
   let replay = document.querySelector("#replay")
-  let koSound = document.querySelector("#ko-sound")
   let arrowDiv = document.querySelectorAll(".arrowkey img");
   let player1Char = document.querySelector(".container .item-0");
   let player2Char = document.querySelector(".container .item-1");
@@ -43,12 +42,10 @@ window.onload = function () {
   let player1 = new Player("Player 1", 100);
   let player2 = new Player("Player 2", 100);
 
-  let arrowArr = ["up", "up", "down", "down", "left", "left", "right", "right"];
-    // let arrowArrSelection = ['up', 'down', 'left', 'right'];
+  // let arrowArr = ["up", "up", "down", "down", "left", "left", "right", "right"];
+    let arrowArr = ['up', 'down', 'left', 'right'];
+    let arrowDivArray = []
  
-// CREATING RANDOM ARROWS
-  createArrow()
-
 
   let roundNum = 1;
 
@@ -57,7 +54,7 @@ window.onload = function () {
   let player2Inputs = [];
   let player1GameClicks = 0;
   let player2GameClicks = 0;
-  let arrowDivArray = []
+ 
 
   const player1KeyRef = {
     KeyW: "up",
@@ -95,22 +92,18 @@ window.onload = function () {
     }
   };
 
-  // Create Arrows in game
-  // let arrowDivArray = createArrow()
-  // console.log(arrowDivArray)
-  // createArrow();
-  
-  // console.log(createArrow())
-  // console.log(arrowArr)
 
   // Adding Event Listener to keys input by both players
   window.addEventListener("keydown", keyInput);
 
+    // CREATING RANDOM ARROWS
+    createArrow()
 
 
   // Creating function to capture inputs by both players
   function keyInput(event) {
     event.preventDefault();
+ 
 
     // Player1's Input
     if (
@@ -126,10 +119,11 @@ window.onload = function () {
     
  
     
+    
     for (let i = 0; i < player1Inputs.length; i++) {
-      if (player1Inputs[i] !== arrowArr[i]) {
+      if (player1Inputs[i] !== arrowDivArray[i]) {
         resetPlayer1();
-      } else if (player1Inputs[i] === arrowArr[i]) {
+      } else if (player1Inputs[i] === arrowDivArray[i]) {
         if (player1GameClicks === 8) {
           console.log("P1 complete");
           // alert(`player1 won`)
@@ -163,9 +157,9 @@ window.onload = function () {
     // If all key inputs matches arrow displayed 100% = Player wins & move on to next round
 
     for (let j = 0; j < player2Inputs.length; j++) {
-      if (player2Inputs[j] !== arrowArr[j]) {
+      if (player2Inputs[j] !== arrowDivArray[j]) {
         resetPlayer2();
-      } else if (player2Inputs[j] === arrowArr[j]) {
+      } else if (player2Inputs[j] === arrowDivArray[j]) {
         if (player2GameClicks === 8) {
           console.log("P2 complete");
           powerAppearP2()
@@ -187,81 +181,42 @@ window.onload = function () {
 
 
   // SETTING & CREATING RANDOW ARROW COMBINATIONS
-  // Initially used simple loop but decided to experiment with Fisher-Yates Algorithm instead
-  // Refer to Appendix 1 for experimental codes
-  function randomArrowArr(arr) {
-    for (let i = arrowArr.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1)); // getting random index
-      [arrowArr[i], arrowArr[j]] = [arrowArr[j], arrowArr[i]]; // swap
-      return arrowArr 
-    }
+
+   // Function to create random index between 0 - 3 
+  function randomIndex() {
+  let randomArrIndex = Math.floor(Math.random() * arrowArr.length);
+    return randomArrIndex
   }
 
-  // function randomArrowArr(arr) {
-  //     let j = Math.floor(Math.random() * (arr.length)); // getting random index
-  //     return j
-  //   }
-  // }
-
-  // RANDOMDIZING ARROW ARRAY INTO ARROW CONTAINER
+  // Creating Random Arrows into Arrow Arrays
   // Generate New Random Arrows from Original Arrow Arrays
-
   function createArrow() {
-    randomArrowArr(arrowArr);
-
-    const arrowElements = document.querySelectorAll(".arrowkey img");
-
-    for (let i = 0; i < arrowElements.length; i++) {
-      if (arrowArr[i] === "up") {
-        arrowElements[i].setAttribute("class", "up");
-      } else if (arrowArr[i] === "down") {
-        arrowElements[i].setAttribute("class", "down");
-      } else if (arrowArr[i] === "left") {
-        arrowElements[i].setAttribute("class", "left");
-      } else if (arrowArr[i] === "right") {
-        arrowElements[i].setAttribute("class", "right");
+    for (let i = 0; i < 8 ; i++) {
+      let r = randomIndex()
+      console.log(r)
+      if (arrowArr[r] === "up") {
+        arrowDiv[i].setAttribute("class", "up");
+        arrowDivArray.push("up")
+        
+      } else if (arrowArr[r] === "down") {
+        arrowDiv[i].setAttribute("class", "down");
+        arrowDivArray.push("down")
+        
+      } else if (arrowArr[r] === "left") {
+        arrowDiv[i].setAttribute("class", "left");
+        arrowDivArray.push("left")
+        
+      } else if (arrowArr[r] === "right") {
+        arrowDiv[i].setAttribute("class", "right");
+        arrowDivArray.push("right")
+        
       }
+
     }
+    console.log(arrowDivArray)
+
   }
 
-  // function to create random integer within that range ==> index between 0 - 3 
-
-  // function randomIndexArrow() {
-  //   let randomIndex = Math.floor(Math.random() * (arrowArrSelection.length)); // getting random index
-  //   return randomIndex
-  //   // console.log(randomIndex)
-  // }
-  // function createArrow() {
-  //   let arrowDivArray =  []
-
-  //   for (let i = 0; i < arrowDiv.length; i++) {
-
-      // arrowDiv[i].classList.add(randomArrow())
-      // arrowDivArray.push(randomArrow())
-      // console.log(arrowDivArray)
-      // console.log(arrowDiv[i])
-
-  //     if (arrowArrSelection[randomIndexArrow()] === "up") {
-  //       arrowDiv[i].setAttribute("class", "up");
-  //       arrowDivArray.push("up")
-  //     } else if (arrowArrSelection[randomIndexArrow()] === "down") {
-  //       arrowDiv[i].setAttribute("class", "down");
-  //       arrowDivArray.push("down")
-  //     } else if (arrowArrSelection[randomIndexArrow()] === "left") {  
-  //       arrowDiv[i].setAttribute("class", "left");
-  //       arrowDivArray.push("left")
-  //     } else if (arrowArrSelection[randomIndexArrow()] === "right") {
-  //       arrowDiv[i].setAttribute("class", "right");
-  //       arrowDivArray.push("right")
-  //     }
-  //     return arrowDivArray
-  //   }
-  //   // console.log(arrowDivArray)
-  //   // console.log(arrowDivArray)
-  //   // console.log(arrowDiv)
-
-  // }
-  // createArrow();
 
   // Reset player's arrows input & gameclicks & calling new random arrows functions
   function nextRound() {
@@ -272,6 +227,7 @@ window.onload = function () {
     roundNum += 1;
     p1Attack.style.display = "none"
     p1Attack.style.display = "none"
+    arrowDivArray = []
     createArrow();
     for (let i = 0; i < arrowDiv.length; i++) {
       arrowDiv[i].style.border = "none";
@@ -325,10 +281,6 @@ window.onload = function () {
       document.location.href = ""
       }
     })
-
-
- 
-  
   }
     
   function powerAppearP1(){
@@ -357,31 +309,3 @@ window.onload = function () {
   //   }
 };
 
-// -- TO BE EXPERIMENTED TO STREAMLINE --//
-
-// function randomIndex(arr) {
-//         let randomI = Math.floor( Math.random() * arr.length )
-//         return randomI
-//     }
-// }
-
-// -- TO BE EXPERIMENTED TO STREAMLINE --//
-
-// function createArrow() {
-// randomIndex(arrowArr)
-
-//     for (let i = 0; i < 8; i++) {
-//             if(arrowArr[randomI] === 'up') {
-//                 arrowDiv[i].setAttribute('class','up')
-//             }
-//             else if(arrowArr[randomI]=== 'down') {
-//                 arrowDiv[i].setAttribute('class','down')
-//             }
-//             else if(arrowArr[randomI]=== 'left') {
-//                 arrowDiv[i].setAttribute('class','left')
-//             }
-//             else if(arrowArr[randomI]=== 'right') {
-//                 arrowDiv[i].setAttribute('class','right')
-//         }
-//     }
-// }
