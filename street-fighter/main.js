@@ -9,6 +9,7 @@ window.onload = function () {
   let gameAssets = document.querySelector("#game-assets-container");
   let endGame = document.querySelector("#ko");
   let replay = document.querySelector("#replay")
+  let koSound = document.querySelector("#ko-sound")
   let arrowDiv = document.querySelectorAll(".arrowkey img");
   let player1Char = document.querySelector(".container .item-0");
   let player2Char = document.querySelector(".container .item-1");
@@ -16,6 +17,8 @@ window.onload = function () {
   let p2HealthBar = document.querySelector(".player-2 .progress-bar");
   let p1Move = document.querySelectorAll(".player-1move");
   let p2Move = document.querySelectorAll(".player-2move");
+  let p1Attack = document.querySelector("#p1-attack")
+  let p2Attack = document.querySelector("#p2-attack")
 
   // CREATING CLASS FOR BOTH PLAYERS
 
@@ -107,6 +110,8 @@ window.onload = function () {
 
   // Creating function to capture inputs by both players
   function keyInput(event) {
+    event.preventDefault();
+
     // Player1's Input
     if (
       event.code == "KeyW" ||
@@ -130,6 +135,7 @@ window.onload = function () {
           // alert(`player1 won`)
           nextRound();
           player1.inflictDamage(player2);
+          powerAppearP1()
           p2HealthBar.style.width = `${player2.health}%`;
           // console.log(player1.health)
         } else if (player1GameClicks < 8) {
@@ -162,10 +168,10 @@ window.onload = function () {
       } else if (player2Inputs[j] === arrowArr[j]) {
         if (player2GameClicks === 8) {
           console.log("P2 complete");
+          powerAppearP2()
           nextRound();
           player2.inflictDamage(player1);
           p1HealthBar.style.width = `${player1.health}%`;
-
           // console.log(player1.health)
           // alert(`player2 won`)
         } else if (player2GameClicks < 8) {
@@ -264,6 +270,8 @@ window.onload = function () {
     player1GameClicks = 0;
     player2GameClicks = 0;
     roundNum += 1;
+    p1Attack.style.display = "none"
+    p1Attack.style.display = "none"
     createArrow();
     for (let i = 0; i < arrowDiv.length; i++) {
       arrowDiv[i].style.border = "none";
@@ -296,19 +304,19 @@ window.onload = function () {
     console.log(`this is round ${roundNum}`)
     if (player1.health === 0) {
       endOfGame(player1Char, player2Char);
-      // alert("Player 2 wins!")
+ 
     } else if (player2.health === 0) {
       endOfGame(player2Char, player1Char);
-      // alert("Player 1 wins!")
+
     }
   }
 
   function endOfGame(character1, character2) {
     window.removeEventListener("keydown", keyInput);
-    // window.removeEventListener("keydown", keyInput);
     setTimeout(() => {
       endGame.style.display = "block";
       replay.style.display = "block";
+
     }, 800);
     character1.style.animation = "none";
     character1.style.transform = "rotate(90deg)";
@@ -319,39 +327,25 @@ window.onload = function () {
     })
 
 
-    // character2.style.animation = "shake 0.5s"
+ 
+  
+  }
+    
+  function powerAppearP1(){
+    p1Attack.style.display= "block"    
+    setTimeout(function(){ 
+      p1Attack.style.display= "none"    
+      }, 500);
   }
 
-  // CODES NOT WORKING
+  function powerAppearP2(){
+    p2Attack.style.display= "block"    
+    setTimeout(function(){ 
+      p2Attack.style.display= "none"    
+      }, 500);
+  }
 
-  // function checkWinConditions2(input, gameClicks){
-  //     for(let j = 0; j<input.length; j++) {
 
-  //         if(input[j] !== arrowArr[j]) {
-  //             // resetPlayer();
-  //             input = [];
-  //             gameClicks = 0
-  //             for (let i =0; i<arrowDiv.length; i++) {
-  //             arrowDiv[i].style.border ="none"
-  //             }
-  // }
-  //         else if(input[j] === arrowArr[j]) {
-
-  //             if(gameClicks === 8) {
-  //             console.log("P2 complete")
-  //             nextRound();
-
-  //             }
-  //             else if(gameClicks < 8) {
-  //                 arrowDiv[j].style.border = "10px solid yellow"
-
-  //             }
-  //         }
-
-  // }
-  // }
-
- 
 
   // EXPERIMENTAL CODES
 

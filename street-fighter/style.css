@@ -143,6 +143,24 @@
   }
 }
 
+
+#p1-attack {
+  content: url(assets/Solarstream.gif);
+  display: none;
+  min-width: 100px;
+  position: absolute
+}
+
+#p2-attack {
+  content: url(assets/Solarstream.gif);
+  transform: scaleX(-1);
+  min-width: 100px;
+  display: none;
+  position: absolute
+}
+
+
+
 .container-arrow {
   display: flex;
   justify-content: center;
