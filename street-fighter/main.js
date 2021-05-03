@@ -4,6 +4,7 @@ window.onload = function () {
   // GLOBAL SCOPE
   let startButton = document.querySelector("#start-button");
   let instructionPage = document.querySelector("#instruction-page");
+  let musicOn = document.querySelector("#music-on")
   let timeStart = document.querySelector("#countdown");
   let gamePage = document.querySelector("#landing-bg");
   let gameAssets = document.querySelector("#game-assets-container");
@@ -82,12 +83,22 @@ window.onload = function () {
  
   // ATTACH EVENT HANDLER
 
+  // Creating an event handler to turn on sound
+  musicOn.onclick = (event) => {
+    event.preventDefault();
+    playInstructionSound()
+    
+  }
+
   // When start button is clicked, remove display for instruction and launch game page
   startButton.onclick = (event) => {
     event.preventDefault();
     enterKeySound()
     playCountdownSound()
+    instructionSound.pause()
     instructionPage.style.display = "none";
+
+ 
 
      // SETTING 3SEC TIMER AFTER CLICKING "START"
     let sec = 3;
@@ -332,7 +343,7 @@ window.onload = function () {
   }
 
   function playBackgroundSound() {
-  backgroundSound.volume = 0.03
+  backgroundSound.volume = 0.3
   backgroundSound.play()
   }
 

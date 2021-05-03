@@ -20,6 +20,19 @@
   cursor: pointer;
 }
 
+#music-on {
+  position: absolute;
+  width: 20px;
+  top: 7%;
+  left: 18%; 
+  color: black;
+  font-family: "Press Start 2P", cursive;
+}
+
+#music-on:hover {
+  cursor: pointer;
+}
+
 #timer #countdown {
   display: flex;
   padding: 0;
