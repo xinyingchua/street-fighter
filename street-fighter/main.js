@@ -19,6 +19,15 @@ window.onload = function () {
   let p1Attack = document.querySelector("#p1-attack")
   let p2Attack = document.querySelector("#p2-attack")
 
+  // SOUNDS
+  let koSound = document.querySelector("#ko-sound")
+  let instructionSound = document.querySelector("#instruction-bgm")
+  let countdownSound = document.querySelector("#countdown-sound")
+  let backgroundSound = document.querySelector("#bgm")
+  let p1PunchSound = document.querySelector("#p1-punch-sound")
+  let p2KickSound = document.querySelector("#p2-kick-sound")
+  let enterSound = document.querySelector("#enter-sound")
+
   // CREATING CLASS FOR BOTH PLAYERS
 
   class Player {
@@ -32,7 +41,7 @@ window.onload = function () {
 
     inflictDamage(opponent) {
       if (opponent.health !== 0) {
-        opponent.health -= 20;
+        opponent.health -= 12.5;
       } else if (opponent.health === 0) {
         opponent.health = 0;
       }
@@ -70,11 +79,14 @@ window.onload = function () {
     ArrowRight: "right",
   };
 
+ 
   // ATTACH EVENT HANDLER
 
   // When start button is clicked, remove display for instruction and launch game page
   startButton.onclick = (event) => {
     event.preventDefault();
+    enterKeySound()
+    playCountdownSound()
     instructionPage.style.display = "none";
 
      // SETTING 3SEC TIMER AFTER CLICKING "START"
@@ -88,6 +100,7 @@ window.onload = function () {
         gamePage.style.display = "block";
         gameAssets.style.display = "block"
         timeStart.innerHTML = "";
+        playBackgroundSound()
       }
     }
   };
@@ -130,6 +143,7 @@ window.onload = function () {
           nextRound();
           player1.inflictDamage(player2);
           powerAppearP1()
+          p1AttackSound()
           p2HealthBar.style.width = `${player2.health}%`;
           // console.log(player1.health)
         } else if (player1GameClicks < 8) {
@@ -163,6 +177,7 @@ window.onload = function () {
         if (player2GameClicks === 8) {
           console.log("P2 complete");
           powerAppearP2()
+          p2AttackSound()
           nextRound();
           player2.inflictDamage(player1);
           p1HealthBar.style.width = `${player1.health}%`;
@@ -270,6 +285,7 @@ window.onload = function () {
   function endOfGame(character1, character2) {
     window.removeEventListener("keydown", keyInput);
     setTimeout(() => {
+      PlayKoSound()
       endGame.style.display = "block";
       replay.style.display = "block";
 
@@ -278,6 +294,7 @@ window.onload = function () {
     character1.style.transform = "rotate(90deg)";
     window.addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
+      enterKeySound()
       document.location.href = ""
       }
     })
@@ -297,7 +314,36 @@ window.onload = function () {
       }, 500);
   }
 
+// Functions for Sounds
+  function PlayKoSound() {
+    koSound.play()
+  }
 
+  function enterKeySound() {
+    enterSound.play()
+  }
+
+  function p1AttackSound() {
+    p1PunchSound.play()
+  }
+
+  function p2AttackSound() {
+    p2KickSound.play()
+  }
+
+  function playBackgroundSound() {
+  backgroundSound.volume = 0.03
+  backgroundSound.play()
+  }
+
+  function playInstructionSound() {
+    instructionSound.play()
+    }
+
+  function playCountdownSound() {
+    backgroundSound.volume = 0.01
+    countdownSound.play()
+      }
 
   // EXPERIMENTAL CODES
 
