@@ -361,7 +361,7 @@ window.onload = function () {
   // Appendix 1
   //   for (let i = 0; i <= arrowArr.length; i++) {
   //     let randomArrIndex = Math.floor(Math.random() * arrowArr.length);
-  //       randomArrowArr.push(arrowArr[randomArrIndex])
+  //       randomArowArr.push(arrowArr[randomArrIndex])
   //       console.log(randomArrowArr)
   //   }
 };
