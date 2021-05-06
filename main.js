@@ -87,8 +87,8 @@ window.onload = function () {
   musicOn.onclick = (event) => {
     event.preventDefault();
     playInstructionSound()
+    }
     
-  }
 
   // When start button is clicked, remove display for instruction and launch game page
   startButton.onclick = (event) => {
