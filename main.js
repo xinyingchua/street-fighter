@@ -42,7 +42,7 @@ window.onload = function () {
 
     inflictDamage(opponent) {
       if (opponent.health !== 0) {
-        opponent.health -= 12.5;
+        opponent.health -= 20;
       } else if (opponent.health === 0) {
         opponent.health = 0;
       }
@@ -52,9 +52,8 @@ window.onload = function () {
   let player1 = new Player("Player 1", 100);
   let player2 = new Player("Player 2", 100);
 
-  // let arrowArr = ["up", "up", "down", "down", "left", "left", "right", "right"];
-    let arrowArr = ['up', 'down', 'left', 'right'];
-    let arrowDivArray = []
+  let arrowArr = ['up', 'down', 'left', 'right'];
+  let arrowDivArray = []
  
 
   let roundNum = 1;
@@ -186,7 +185,7 @@ window.onload = function () {
         resetPlayer2();
       } else if (player2Inputs[j] === arrowDivArray[j]) {
         if (player2GameClicks === 8) {
-          console.log("P2 complete");
+          // console.log("P2 complete");
           powerAppearP2()
           p2AttackSound()
           nextRound();
@@ -239,7 +238,7 @@ window.onload = function () {
       }
 
     }
-    console.log(arrowDivArray)
+    // console.log(arrowDivArray)
 
   }
 
@@ -300,7 +299,7 @@ window.onload = function () {
       endGame.style.display = "block";
       replay.style.display = "block";
 
-    }, 800);
+    }, 400);
     character1.style.animation = "none";
     character1.style.transform = "rotate(90deg)";
     window.addEventListener("keydown", function(e) {
